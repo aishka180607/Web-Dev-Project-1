@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+
+.reviews {
+  background: transparent;
+  padding: 60px 0;
+  font-family: 'Just Another Hand', cursive;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.reviews h2 {
+  margin-bottom: 40px;
+  color: #002244;
+  font-size: 3rem;
+}
+
+.review-card {
+  background: rgba(255, 255, 255, 0.7); /* полупрозрачный фон */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.5s ease;
+}
+
+.review-card blockquote {
+  font-size: 2rem;
+  line-height: 1.5;
+  margin: 0;
+  color: #002244;
+}
+
+.reviewer {
+  margin-top: 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #f4743b;
+}
+
+.navigation {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav-btn {
+  background-color: #f4743b;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #e3632c;
+}

@@ -1,0 +1,52 @@
+<section class="popular-tours" id="popular-tours">
+  <div class="container">
+    <h2>Find Popular Tours</h2>
+
+    <div class="tour-cards">
+      <div *ngFor="let tour of tours; let i = index" class="tour-card">
+        
+        <!-- Tour Image -->
+        <div class="tour-img-wrapper">
+          <img
+            [src]="tour.hotel.images[i % tour.hotel.images.length]"
+            alt="{{ tour?.name }}"
+            class="tour-image"
+        />
+        </div>
+        <div *ngIf="!tour?.hotel?.images?.length">
+          No images available
+        </div>
+
+        <!-- Location -->
+        <p class="tour-subtitle">{{ tour?.hotel?.city?.name }}, {{ tour?.hotel?.city?.country?.name }}</p>
+
+        <!-- Title -->
+        <h3 class="tour-title">{{ tour?.name }}</h3>
+
+        <!-- Info -->
+        <div class="tour-info">
+          <div class="info-item">
+            <span class="info-value">{{ tour?.duration }}</span>
+            <span class="info-label">days</span>
+          </div>
+
+          <div class="info-item">
+            <!-- Star rating -->
+            <div class="rating-stars">
+            </div>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">From</span>
+            <span class="info-value price">${{ tour?.price }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <!-- Кнопка "See All Offers" -->
+   <div class="see-all">
+    <a href="/tours" class="btn">See All Offers</a>
+  </div>
+  </div>
+</section>

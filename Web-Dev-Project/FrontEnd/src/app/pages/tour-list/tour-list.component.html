@@ -1,0 +1,104 @@
+<app-navbar></app-navbar>
+
+  
+<section class="tour-wrapper">
+  <h2>Available Tours</h2>
+  <p class="results-count" *ngIf="!loading">{{ tours.length }} results</p>
+  <p class="results-count" *ngIf="loading">Loading tours...</p>
+  <div class="flex-container">
+    <div class="filter-sidebar">
+      <h3>Filters</h3>
+
+      <label for="origin">Origin</label>
+      <select id="origin" [(ngModel)]="selectedOriginId" name="origin">
+        <option *ngFor="let city of cities" [value]="city.id">
+          {{ city.name }}
+        </option>
+      </select>
+
+      <label>To:</label>
+      <select [(ngModel)]="selectedDestinationId">
+        <option *ngFor="let city of cities" [value]="city.id">
+          {{ city.name }}
+        </option>
+      </select>
+
+      <label>Departure Date:</label>
+      <input type="date" [(ngModel)]="selectedDepartureDate" />
+
+      <label>Return Date:</label>
+      <input type="date" [(ngModel)]="selectedReturnDate" />
+
+      <label>Meal Type:</label>
+      <select [(ngModel)]="selectedMealTypeId">
+        <option *ngFor="let meal of mealTypes" [value]="meal.id">
+          {{ meal.description }}
+        </option>
+      </select>
+
+      <button (click)="applyFilters()">Apply Filters</button>
+      <button (click)="resetFilters()">Reset Filters</button>
+    </div>
+
+    <!-- Show filtered tours if any filters are applied 
+  <div class="tour-grid" *ngIf="filteredTours.length > 0">
+    <div *ngFor="let tour of filteredTours;let i = index" class="tour-card">
+      <div class="tour-img-wrapper" *ngIf="tour?.hotel?.images?.length">
+        <img [src]="tour.hotel.images[i%tour.hotel.images.length]" alt="Tour image" />
+      </div>      
+      <div *ngIf="!tour?.hotel?.images?.length">
+        No images available
+      </div>
+      </div>
+  </div>-->
+
+    <!-- Show all tours if no filters are applied or filteredTours is empty -->
+    <div class="tour-grid">
+      <div *ngFor="let tour of tours; let i = index" class="tour-card">
+        <div class="tour-img-wrapper" *ngIf="tour?.hotel?.images?.length">
+          <img
+            [src]="tour.hotel.images[i % tour.hotel.images.length]"
+            alt="Tour image"
+          />
+        </div>
+        <div *ngIf="!tour?.hotel?.images?.length">No images available</div>
+
+        <div class="tour-info">
+          <div>
+            <div class="location">
+              {{ tour?.hotel?.city?.country?.name || "" }},
+              {{ tour?.hotel?.city?.name || " " }}
+            </div>
+            <h3>{{ tour?.name }}</h3>
+
+            <div class="rating-stars">
+              <span *ngFor="let star of getStarArray(tour?.hotel?.rating)"
+                >★</span
+              >
+              <span style="color: #607d8b">
+                ({{ tour?.hotel?.rating ? tour.hotel.rating * 50 + 100 : 100 }})
+              </span>
+            </div>
+
+            <p>{{ cleanDescription(tour?.description) }}</p>
+
+            <div class="badges">
+              <span>Best Price Guarantee</span>
+              <span>Free Cancellation</span>
+              <span>{{ tour?.meal_type }}</span>
+            </div>
+          </div>
+
+          <div class="tour-footer">
+            <div class="price">
+              {{ tour?.duration }} days — from ${{ tour?.price }}
+            </div>
+            <button (click)="viewDetails(tour?.id)">View Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- tour-card -->
+    </div>
+    <!-- tour-grid -->
+  </div>
+</section>

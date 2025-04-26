@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+
+.contact-section {
+  padding: 60px 0;
+  background: transparent;
+  font-family: 'Just Another Hand', cursive;
+  color: #002244;
+}
+
+.contact-section h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form label {
+  font-size: 1.6rem;
+  text-align: left;
+}
+
+form input {
+  padding: 1rem;
+  font-size: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Just Another Hand', cursive;
+}
+
+form button {
+  padding: 1rem;
+  font-size: 1.8rem;
+  background-color: #f4743b;
+  border: none;
+  color: #fff;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:disabled {
+  background-color: #ffd699;
+  cursor: not-allowed;
+}
+
+form button:hover {
+  background-color: #e3632c;
+}
+
+.error {
+  color: red;
+  font-size: 1.4rem;
+  text-align: center;
+}

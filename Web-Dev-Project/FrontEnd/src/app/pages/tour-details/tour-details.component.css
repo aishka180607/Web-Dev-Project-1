@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap");
+
+.active-link {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.container {
+  max-width: 960px; /* or 800px, adjust as needed */
+  margin: 0 auto; /* centers the container */
+  padding: 20px;
+  background-color: #fcf4dc;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.tour-details-header h1 {
+  font-family: "Just Another Hand", cursive;
+}
+
+.tour-gallery {
+  position: relative;
+  max-width: 500px;
+  margin: 20px auto; /* Center the gallery */
+}
+
+.image-container {
+  text-align: center;
+}
+
+.tour-image {
+  width: 80%; /* Smaller size for the image */
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.tour-image:hover {
+  transform: scale(1.05);
+}
+
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.prev-btn,
+.next-btn {
+  background-color: rgba(255, 145, 0, 0.8);
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  background-color: #12a6dc;
+}
+
+.prev-btn:disabled,
+.next-btn:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.tour-description,
+.tour-duration {
+  margin-top: 20px;
+}
+
+.tour-info {
+  margin-top: 30px;
+}
+
+.flight-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.flight-table th,
+.flight-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.flight-table th {
+  background-color: #f4f4f4;
+}
+
+.hotel-gallery {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.hotel-image-container {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.hotel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.footer-links {
+  margin-top: 30px;
+}
+
+.footer-links ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* New styles for buttons */
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.back-button,
+.book-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.back-button {
+  background-color: #f8f9fa;
+  color: #00bbff;
+  border: 2px solid #00bfff;
+}
+
+.back-button:hover {
+  background-color: #ff6200;
+  color: white;
+}
+
+.book-button {
+  background-color: #fd8003;
+  color: white;
+  border: 2px solid #ea6d00;
+}
+
+.book-button:hover {
+  background-color: #0dbfff;
+  border-color: #0dbfff;
+}
+
+.no-flights-message {
+  color: red;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.custom-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.custom-alert-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.custom-alert-content p {
+  margin: 0 0 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.custom-alert-content button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.custom-alert-content button:hover {
+  background-color: #0056b3;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  margin: 20px 0;
+}

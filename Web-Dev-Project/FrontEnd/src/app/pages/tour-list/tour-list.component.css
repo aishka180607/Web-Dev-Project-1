@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+
+.tour-wrapper {
+  padding: 2rem;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h2 {
+  font-family: 'Just Another Hand', cursive;
+  color: #000000;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.results-count {
+  text-align: center;
+  font-size: 1rem;
+  color: #455a64;
+  margin-bottom: 1.5rem;
+}
+
+.tour-grid-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* center the tour list */
+}
+
+/* Tour list with limited width */
+.tour-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 700px; /* limits how wide it can go */
+}
+
+
+.tour-card {
+  background: #fff3e0;
+  display: flex;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  flex-direction: row;
+}
+
+.tour-card img {
+  width: 180px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tour-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.tour-info .location {
+  font-size: 0.9rem;
+  color: #607d8b;
+  margin-bottom: 0.25rem;
+}
+
+.tour-info h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #00796b;
+  margin-bottom: 0.4rem;
+}
+
+.rating-stars {
+  color: gold;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.tour-info p {
+  font-size: 0.9rem;
+  color: #37474f;
+  margin-bottom: 0.5rem;
+}
+
+.badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+}
+
+.badges span {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+}
+
+.tour-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-weight: bold;
+  color: #f57c00;
+  font-size: 1rem;
+}
+
+button {
+  background: #f4511e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+button:hover {
+  background: #d84315;
+}.flex-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.filter-sidebar {
+  background-color: orange;
+  padding: 1rem;
+  width: 250px;
+  border-radius: 10px;
+  color: white;
+  height: fit-content;
+  font-weight: bold;
+}
+
+.filter-sidebar label {
+  display: block;
+  margin-top: 1rem;
+}
+
+.filter-sidebar select,
+.filter-sidebar input {
+  width: 100%;
+  padding: 6px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 4px;
+}
+
+.filter-sidebar button {
+  margin-top: 1rem;
+  background-color: white;
+  color: orange;
+  font-weight: bold;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.flex-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+/* Sidebar - fixed width */
+.filter-sidebar {
+  background-color: orange;
+  padding: 1rem;
+  width: 300px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  color: white;
+  height: fit-content;
+  font-weight: bold;
+}
+
+/* Let the grid wrapper take the remaining space */
+.tour-grid-wrapper {
+  flex: 1;
+  max-width: calc(100% - 320px); /* leave space for sidebar and gap */
+}
+
+/* Keep tour cards from stretching too wide */
+.tour-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 100%;
+}
+
+.tour-card {
+  max-width: 100%;
+}

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+
+.why-choose {
+  padding: 60px 0;
+  font-family: 'Just Another Hand', cursive;
+  background: transparent; /* убираем белый фон */
+}
+
+.why-choose h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #002244;
+  font-size: 3rem;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background: transparent;  /* прозрачный фон карточки */
+  padding: 20px;
+  border: none;             /* убраны границы карточек */
+  border-radius: 4px;
+  flex: 1 1 220px;
+  text-align: center;
+  box-shadow: none;
+}
+
+.icon {
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 0.5rem 0;
+  color: #002244;
+  font-size: 2.5rem;   /* увеличен размер шрифта для заголовков */
+}
+
+.card p {
+  margin: 0.3rem 0;
+  color: #002244;
+  font-size: 1.8rem;  /* увеличен размер шрифта для описаний */
+}

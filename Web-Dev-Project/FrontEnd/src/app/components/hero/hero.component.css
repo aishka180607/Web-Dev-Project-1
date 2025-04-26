@@ -1,0 +1,8 @@
+.hero {
+  background: url('/assets/hero-bg.png') no-repeat center center / cover;
+  height: 50vh;
+  margin: 0;
+  padding: 0;
+}
+
+

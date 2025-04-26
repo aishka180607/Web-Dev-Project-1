@@ -1,0 +1,38 @@
+.navbar {
+  background: #f4743b; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand img {
+  max-height: 50px;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  margin-right:15px;
+}
+
+.nav-menu li {
+  margin-left: 20px;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.0rem;
+}
+
+.nav-menu li a.active,
+.nav-menu li a:hover {
+  color: #ffd699;
+}

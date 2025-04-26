@@ -1,0 +1,39 @@
+
+<app-navbar></app-navbar>
+<section class="requests">
+  <div class="container">
+    <h2>Custom Requests</h2>
+
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+
+    <div class="requests-table-wrapper" *ngIf="requests.length > 0">
+      <table class="requests-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of requests">
+            <td>{{ request.id }}</td>
+            <td>{{ request.name }}</td>
+            <td>{{ request.email }}</td>
+            <td>{{ request.message }}</td>
+            <td>{{ request.created_at | date : "dd.MM.yyyy HH:mm" }}</td>
+            <td>{{ request.updated_at | date : "dd.MM.yyyy HH:mm" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="requests.length === 0" class="no-requests">
+      No custom requests found.
+    </div>
+  </div>
+</section>
+>>>>>>> a3ea004cb77debe80fb92ccc167b12c96963d507

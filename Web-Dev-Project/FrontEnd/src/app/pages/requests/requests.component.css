@@ -1,0 +1,71 @@
+.requests {
+  padding: 40px 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.requests-table-wrapper {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.requests-table th,
+.requests-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.requests-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  color: #555;
+}
+
+.requests-table td {
+  font-size: 14px;
+  color: #333;
+}
+
+.requests-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.requests-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.no-requests {
+  text-align: center;
+  font-size: 16px;
+  color: #777;
+  margin-top: 20px;
+}

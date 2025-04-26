@@ -1,0 +1,300 @@
+<app-navbar></app-navbar>
+
+<div *ngIf="tour" class="container">
+  <div *ngIf="tour">
+    <div *ngIf="showAlert" class="custom-alert">
+      <div class="custom-alert-content">
+        <p>{{ alertMessage }}</p>
+        <button (click)="closeAlert()">OK</button>
+      </div>
+    </div>
+
+    <div class="tour-details-header">
+      <h1>{{ tour.name }}</h1>
+
+      <!-- Photo Gallery Section -->
+      <div class="tour-gallery">
+        <div class="image-container">
+          <img
+            *ngIf="images.length > 0"
+            [src]="images[currentImageIndex]"
+            alt="Tour image"
+            class="tour-image"
+          />
+          <!-- Fallback message when there are no images -->
+          <div *ngIf="images.length === 0">No images available</div>
+        </div>
+        <div class="gallery-controls">
+          <button
+            (click)="previousImage()"
+            class="prev-btn"
+            [disabled]="images.length === 0"
+          >
+            &lt;
+          </button>
+          <button
+            (click)="nextImage()"
+            class="next-btn"
+            [disabled]="images.length === 0"
+          >
+            &gt;
+          </button>
+        </div>
+      </div>
+
+      <div class="tour-duration">
+        <strong>Duration:</strong> {{ tour.duration }} days
+      </div>
+    </div>
+
+    <div class="tour-info">
+      <div class="tour-details">
+        <h4>Tour Overview</h4>
+        <p>{{ tour.description }}</p>
+
+        <h4>Meal Type: {{ tour.meal_type }}</h4>
+        <h4>Price for tour (without flight) {{ tour.price }}$</h4>
+
+        <!-- Flights From Origin to Destination -->
+        <h4>Flights: To</h4>
+        <div *ngIf="isLoadingFlights" class="loading-message">Searching...</div>
+        <div *ngIf="!isLoadingFlights">
+          <div
+            *ngIf="flightsTo.length === 0 && connectingFlightsTo.length === 0"
+            class="no-flights-message"
+          >
+            No parameters were provided for searching flights.
+          </div>
+          <table
+            *ngIf="flightsTo.length > 0 || connectingFlightsTo.length > 0"
+            class="flight-table"
+          >
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>Flight Number</th>
+                <th>Airline</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Price ($)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Direct Flights -->
+              <tr *ngFor="let flight of flightsTo">
+                <td>
+                  <input
+                    type="radio"
+                    name="flightTo"
+                    [value]="flight"
+                    (change)="selectFlightTo(flight)"
+                  />
+                </td>
+                <td>{{ flight.flight_number }}</td>
+                <td>{{ flight.airline }}</td>
+                <td>
+                  {{ flight.departure | date : "dd.MM.yyyy HH:mm" }}
+                  {{ flight.origin.name }}
+                </td>
+                <td>
+                  {{ flight.arrival | date : "dd.MM.yyyy HH:mm" }}
+                  {{ flight.destination.name }}
+                </td>
+                <td>{{ flight.price }}</td>
+              </tr>
+              <!-- Connecting Flights -->
+              <tr *ngFor="let connection of connectingFlightsTo">
+                <td>
+                  <input
+                    type="radio"
+                    name="flightTo"
+                    [value]="connection"
+                    (change)="selectConnectingFlightTo(connection)"
+                  />
+                </td>
+                <ng-container
+                  *ngIf="connection.firstLeg && connection.secondLeg"
+                >
+                  <td>
+                    ({{ connection.firstLeg.flight_number }})<br />
+                    ({{ connection.secondLeg.flight_number }})
+                  </td>
+                  <td>
+                    <strong>First Leg:</strong>
+                    {{ connection.firstLeg.airline }}<br />
+                    <strong>Second Leg:</strong>
+                    {{ connection.secondLeg.airline }}
+                  </td>
+                  <td>
+                    {{
+                      connection.firstLeg.departure | date : "dd.MM.yyyy HH:mm"
+                    }}
+                    {{ connection.firstLeg.origin.name }}<br />
+                    {{
+                      connection.secondLeg.departure | date : "dd.MM.yyyy HH:mm"
+                    }}
+                    {{ connection.secondLeg.origin.name }}
+                  </td>
+                  <td>
+                    {{
+                      connection.firstLeg.arrival | date : "dd.MM.yyyy HH:mm"
+                    }}
+                    {{ connection.firstLeg.destination.name }}
+                    <br />
+                    {{
+                      connection.secondLeg.arrival | date : "dd.MM.yyyy HH:mm"
+                    }}
+                    {{ connection.secondLeg.destination.name }}
+                  </td>
+                  <td>
+                    {{
+                      +connection.firstLeg.price + +connection.secondLeg.price
+                    }}
+                  </td>
+                </ng-container>
+                <ng-container
+                  *ngIf="!connection.firstLeg || !connection.secondLeg"
+                >
+                  <em>Invalid connection data</em>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Flights From Destination to Origin -->
+        <h4>Flights: Back</h4>
+        <div *ngIf="isLoadingFlights" class="loading-message">Searching...</div>
+        <div *ngIf="!isLoadingFlights">
+          <div
+            *ngIf="
+              flightsBack.length === 0 && connectingFlightsBack.length === 0
+            "
+            class="no-flights-message"
+          >
+            No parameters were provided for searching flights.
+          </div>
+          <table
+            *ngIf="flightsBack.length > 0 || connectingFlightsBack.length > 0"
+            class="flight-table"
+          >
+            <thead>
+              <tr>
+                <th>Select</th>
+                <th>Flight Number</th>
+                <th>Airline</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th>Price ($)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Direct Flights -->
+              <tr *ngFor="let flight of flightsBack">
+                <td>
+                  <input
+                    type="radio"
+                    name="flightBack"
+                    [value]="flight"
+                    (change)="selectFlightBack(flight)"
+                  />
+                </td>
+                <td>{{ flight.flight_number }}</td>
+                <td>{{ flight.airline }}</td>
+                <td>
+                  {{ flight.departure | date : "dd.MM.yyyy HH:mm" }}
+                  {{ flight.origin.name }}
+                </td>
+                <td>
+                  {{ flight.arrival | date : "dd.MM.yyyy HH:mm" }}
+                  {{ flight.destination.name }}
+                </td>
+                <td>{{ flight.price }}</td>
+              </tr>
+              <!-- Connecting Flights -->
+              <tr *ngFor="let connection of connectingFlightsBack">
+                <td>
+                  <input
+                    type="radio"
+                    name="flightBack"
+                    [value]="connection"
+                    (change)="selectConnectingFlightBack(connection)"
+                  />
+                </td>
+                <ng-container
+                  *ngIf="connection.firstLeg && connection.secondLeg"
+                >
+                  <td>
+                    ({{ connection.firstLeg.flight_number }})<br />
+                    ({{ connection.secondLeg.flight_number }})
+                  </td>
+                  <td>
+                    <strong>First Leg:</strong>
+                    {{ connection.firstLeg.airline }}<br />
+                    <strong>Second Leg:</strong>
+                    {{ connection.secondLeg.airline }}
+                  </td>
+                  <td>
+                    {{
+                      connection.firstLeg.departure | date : "dd.MM.yyyy HH:mm"
+                    }}
+                    {{ connection.firstLeg.origin.name }}<br />
+                    {{
+                      connection.secondLeg.departure | date : "dd.MM.yyyy HH:mm"
+                    }}
+                    {{ connection.secondLeg.origin.name }}
+                  </td>
+                  <td>
+                    {{
+                      connection.firstLeg.arrival | date : "dd.MM.yyyy HH:mm"
+                    }}
+                    {{ connection.firstLeg.destination.name }}<br />
+                    {{
+                      connection.secondLeg.arrival | date : "dd.MM.yyyy HH:mm"
+                    }}
+                    {{ connection.secondLeg.destination.name }}
+                  </td>
+                  <td>
+                    {{
+                      +connection.firstLeg.price + +connection.secondLeg.price
+                    }}
+                  </td>
+                </ng-container>
+                <ng-container
+                  *ngIf="!connection.firstLeg || !connection.secondLeg"
+                >
+                  <em>Invalid connection data</em>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Hotel Information with Photos -->
+        <h4>Hotel Information</h4>
+        <p>
+          <strong>{{ tour.hotel.name }}</strong>
+        </p>
+        <p><strong>Address:</strong>{{ tour.hotel.address }}</p>
+        <p><strong>Rating:</strong> {{ tour.hotel.rating }} stars</p>
+        <p>{{ tour.hotel.description }}</p>
+
+        <!-- Hotel Photo Gallery -->
+        <h4>Hotel Photos</h4>
+        <div class="hotel-gallery">
+          <div
+            *ngFor="let img of tour.hotel.images"
+            class="hotel-image-container"
+          >
+            <img [src]="img" alt="Hotel image" class="hotel-image" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons-container">
+      <button (click)="goBack()" class="back-button">Go Back</button>
+      <button (click)="goToBooking()" class="book-button">Book Tour</button>
+    </div>
+  </div>
+</div>

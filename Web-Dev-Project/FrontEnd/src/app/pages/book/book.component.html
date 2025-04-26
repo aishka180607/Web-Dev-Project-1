@@ -1,0 +1,184 @@
+<app-navbar></app-navbar>
+<section class="book">
+  <div class="container">
+    <h2>Book Your Tour</h2>
+
+    <!-- Confirmation Section -->
+    <div class="confirmation-section" *ngIf="tour">
+      <h3>Confirm Your Booking</h3>
+      <p><strong>Tour:</strong> {{ tour.name }}</p>
+      <p><strong>Meal Type:</strong> {{ tour.meal_type }}</p>
+
+      <h4>Flight To</h4>
+      <table class="flight-table" *ngIf="selectedFlightTo">
+        <thead>
+          <tr>
+            <th>Flight Number</th>
+            <th>Airline</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="selectedFlightTo?.flight_number">
+            <td>{{ selectedFlightTo.flight_number }}</td>
+            <td>{{ selectedFlightTo.airline }}</td>
+            <td>{{ selectedFlightTo.origin.name }}</td>
+            <td>{{ selectedFlightTo.destination.name }}</td>
+            <td>
+              {{ selectedFlightTo.departure | date : "dd.MM.yyyy HH:mm" }}
+            </td>
+            <td>{{ selectedFlightTo.arrival | date : "dd.MM.yyyy HH:mm" }}</td>
+          </tr>
+          <tr *ngIf="selectedFlightTo?.firstLeg && selectedFlightTo?.secondLeg">
+            <td>{{ selectedFlightTo.firstLeg.flight_number }}</td>
+            <td>{{ selectedFlightTo.firstLeg.airline }}</td>
+            <td>{{ selectedFlightTo.firstLeg.origin.name }}</td>
+            <td>{{ selectedFlightTo.firstLeg.destination.name }}</td>
+            <td>
+              {{
+                selectedFlightTo.firstLeg.departure | date : "dd.MM.yyyy HH:mm"
+              }}
+            </td>
+            <td>
+              {{
+                selectedFlightTo.firstLeg.arrival | date : "dd.MM.yyyy HH:mm"
+              }}
+            </td>
+          </tr>
+          <tr *ngIf="selectedFlightTo?.firstLeg && selectedFlightTo?.secondLeg">
+            <td>{{ selectedFlightTo.secondLeg.flight_number }}</td>
+            <td>{{ selectedFlightTo.secondLeg.airline }}</td>
+            <td>{{ selectedFlightTo.secondLeg.origin.name }}</td>
+            <td>{{ selectedFlightTo.secondLeg.destination.name }}</td>
+            <td>
+              {{
+                selectedFlightTo.secondLeg.departure | date : "dd.MM.yyyy HH:mm"
+              }}
+            </td>
+            <td>
+              {{
+                selectedFlightTo.secondLeg.arrival | date : "dd.MM.yyyy HH:mm"
+              }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Flight Back</h4>
+      <table class="flight-table" *ngIf="selectedFlightBack">
+        <thead>
+          <tr>
+            <th>Flight Number</th>
+            <th>Airline</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="selectedFlightBack?.flight_number">
+            <td>{{ selectedFlightBack.flight_number }}</td>
+            <td>{{ selectedFlightBack.airline }}</td>
+            <td>{{ selectedFlightBack.origin.name }}</td>
+            <td>{{ selectedFlightBack.destination.name }}</td>
+            <td>
+              {{ selectedFlightBack.departure | date : "dd.MM.yyyy HH:mm" }}
+            </td>
+            <td>
+              {{ selectedFlightBack.arrival | date : "dd.MM.yyyy HH:mm" }}
+            </td>
+          </tr>
+          <tr
+            *ngIf="
+              selectedFlightBack?.firstLeg && selectedFlightBack?.secondLeg
+            "
+          >
+            <td>{{ selectedFlightBack.firstLeg.flight_number }}</td>
+            <td>{{ selectedFlightBack.firstLeg.airline }}</td>
+            <td>{{ selectedFlightBack.firstLeg.origin.name }}</td>
+            <td>{{ selectedFlightBack.firstLeg.destination.name }}</td>
+            <td>
+              {{
+                selectedFlightBack.firstLeg.departure
+                  | date : "dd.MM.yyyy HH:mm"
+              }}
+            </td>
+            <td>
+              {{
+                selectedFlightBack.firstLeg.arrival | date : "dd.MM.yyyy HH:mm"
+              }}
+            </td>
+          </tr>
+          <tr
+            *ngIf="
+              selectedFlightBack?.firstLeg && selectedFlightBack?.secondLeg
+            "
+          >
+            <td>{{ selectedFlightBack.secondLeg.flight_number }}</td>
+            <td>{{ selectedFlightBack.secondLeg.airline }}</td>
+            <td>{{ selectedFlightBack.secondLeg.origin.name }}</td>
+            <td>{{ selectedFlightBack.secondLeg.destination.name }}</td>
+            <td>
+              {{
+                selectedFlightBack.secondLeg.departure
+                  | date : "dd.MM.yyyy HH:mm"
+              }}
+            </td>
+            <td>
+              {{
+                selectedFlightBack.secondLeg.arrival | date : "dd.MM.yyyy HH:mm"
+              }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        <strong>Total Price (including flights):</strong> {{ total_price }}$
+      </p>
+    </div>
+
+    <!-- Custom Alert -->
+    <div *ngIf="showCustomAlert" class="custom-alert">
+      <div class="custom-alert-content">
+        <p>{{ success }}</p>
+        <p>Our manager will contact with you as soon as possible :)</p>
+        <button (click)="closeCustomAlert()">OK</button>
+      </div>
+    </div>
+
+    <!-- Booking Form -->
+    <form (ngSubmit)="submitBooking()" #bookingForm="ngForm">
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        [(ngModel)]="bookingData.name"
+        required
+      />
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Phone Number"
+        [(ngModel)]="bookingData.phone"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        [(ngModel)]="bookingData.email"
+        required
+      />
+      <button type="submit" [disabled]="!bookingForm.valid">
+        Send Booking
+      </button>
+    </form>
+
+    <div *ngIf="success" class="success-message">{{ success }}</div>
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+  </div>
+</section>

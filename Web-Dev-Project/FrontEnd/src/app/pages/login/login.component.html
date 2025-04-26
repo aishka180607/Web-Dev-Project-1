@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<div class="contact-section">
+  <h2>Manager Login</h2>
+  <form (ngSubmit)="login()">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      [(ngModel)]="username"
+      name="username"
+      required
+    />
+
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      [(ngModel)]="password"
+      name="password"
+      required
+    />
+
+    <button type="submit">Login</button>
+
+    <p *ngIf="error" class="error">{{ error }}</p>
+  </form>
+</div>

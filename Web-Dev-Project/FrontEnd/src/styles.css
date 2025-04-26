@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: hsl(199, 69%, 80%);
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  .background-icon {
+    position: fixed;
+    z-index: -1;
+    pointer-events: none;
+  }
+  

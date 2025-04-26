@@ -1,0 +1,268 @@
+<app-navbar></app-navbar>
+<section class="applications">
+  <div class="container">
+    <h2>Applications</h2>
+
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+
+    <!-- New Applications -->
+    <h3>New Applications</h3>
+    <div class="applications-table-wrapper" *ngIf="applicationsNew.length > 0">
+      <table class="applications-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Tour ID</th>
+            <th>Flights ID</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let app of applicationsNew">
+            <td>{{ app.id }}</td>
+            <td>{{ app.name }}</td>
+            <td>{{ app.phone }}</td>
+            <td>{{ app.email }}</td>
+            <td>
+              <a
+                href="#"
+                (click)="$event.preventDefault(); openTourDetails(app.tour)"
+              >
+                {{ app.tour }}</a
+              >
+            </td>
+            <td>
+              <div *ngFor="let flight of app.flights_to">
+                To:
+                <a
+                  href="#"
+                  (click)="$event.preventDefault(); openFlightDetails(flight)"
+                >
+                  {{ flight }}</a
+                >
+              </div>
+              <div *ngFor="let flight of app.flights_back">
+                Back:
+                <a
+                  href="#"
+                  (click)="$event.preventDefault(); openFlightDetails(flight)"
+                >
+                  {{ flight }}</a
+                >
+              </div>
+            </td>
+            <td>{{ app.total_price }}</td>
+            <td>{{ app.status }}</td>
+            <td>
+              <button
+                class="btn-pending"
+                (click)="updateStatus(app, 'pending')"
+              >
+                Mark as Pending
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pending Applications -->
+    <h3>Pending Applications</h3>
+    <div
+      class="applications-table-wrapper"
+      *ngIf="applicationsPending.length > 0"
+    >
+      <table class="applications-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Tour ID</th>
+            <th>Flights ID</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let app of applicationsPending">
+            <td>{{ app.id }}</td>
+            <td>{{ app.name }}</td>
+            <td>{{ app.phone }}</td>
+            <td>{{ app.email }}</td>
+            <td>
+              <a
+                href="#"
+                (click)="$event.preventDefault(); openTourDetails(app.tour)"
+              >
+                {{ app.tour }}</a
+              >
+            </td>
+            <td>
+              <div *ngFor="let flight of app.flights_to">
+                To:
+                <a
+                  href="#"
+                  (click)="$event.preventDefault(); openFlightDetails(flight)"
+                >
+                  {{ flight }}</a
+                >
+              </div>
+              <div *ngFor="let flight of app.flights_back">
+                Back:
+                <a
+                  href="#"
+                  (click)="$event.preventDefault(); openFlightDetails(flight)"
+                >
+                  {{ flight }}</a
+                >
+              </div>
+            </td>
+            <td>{{ app.total_price }}</td>
+            <td>{{ app.status }}</td>
+            <td>
+              <div class="actions">
+                <button
+                  class="btn-approved"
+                  (click)="updateStatus(app, 'approved')"
+                >
+                  Approve
+                </button>
+                <button
+                  class="btn-rejected"
+                  (click)="updateStatus(app, 'rejected')"
+                >
+                  Reject
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Processed Applications -->
+    <h3>Processed Applications</h3>
+    <div
+      class="applications-table-wrapper"
+      *ngIf="applicationsProcessed.length > 0"
+    >
+      <table class="applications-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Tour ID</th>
+            <th>Flights ID</th>
+            <th>Price</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let app of applicationsProcessed">
+            <td>{{ app.id }}</td>
+            <td>{{ app.name }}</td>
+            <td>{{ app.phone }}</td>
+            <td>{{ app.email }}</td>
+            <td>
+              <a
+                href="#"
+                (click)="$event.preventDefault(); openTourDetails(app.tour)"
+                >{{ app.tour }}</a
+              >
+            </td>
+            <td>
+              <div *ngFor="let flight of app.flights_to">
+                To:
+                <a
+                  href="#"
+                  (click)="$event.preventDefault(); openFlightDetails(flight)"
+                >
+                  {{ flight }}</a
+                >
+              </div>
+              <div *ngFor="let flight of app.flights_back">
+                Back:
+                <a
+                  href="#"
+                  (click)="$event.preventDefault(); openFlightDetails(flight)"
+                >
+                  {{ flight }}</a
+                >
+              </div>
+            </td>
+            <td>{{ app.total_price }}</td>
+            <td>{{ app.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div
+      *ngIf="
+        applicationsNew.length === 0 &&
+        applicationsPending.length === 0 &&
+        applicationsProcessed.length === 0
+      "
+      class="no-applications"
+    >
+      No applications found.
+    </div>
+
+    <!-- Tour Details Modal -->
+    <div *ngIf="selectedTour" class="custom-modal">
+      <div class="custom-modal-content">
+        <h3>Tour Details</h3>
+        <p><strong>City:</strong> {{selectedTour.hotel.city.name }}, {{selectedTour.hotel.city.country.name}}</p>
+        <p><strong>Tour Name:</strong> {{ selectedTour.name }}</p>
+        <p><strong>Hotel Name:</strong> {{ selectedTour.hotel.name }}</p>
+        <p><strong>Duration:</strong> {{ selectedTour.duration }} days</p>
+        <p><strong>Meal Type:</strong> {{ selectedTour.meal_type }}</p>
+        <button (click)="closeTourDetails()">Close</button>
+      </div>
+    </div>
+
+    <!-- Flight Details Modal -->
+    <div *ngIf="selectedFlight" class="custom-modal">
+      <div class="custom-modal-content">
+        <h3>Flight Details</h3>
+        <table class="flight-table">
+          <thead>
+            <tr>
+              <th>Flight Number</th>
+              <th>Airline</th>
+              <th>Departure</th>
+              <th>Arrival</th>
+              <th>Price ($)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ selectedFlight.flight_number }}</td>
+              <td>{{ selectedFlight.airline }}</td>
+              <td>
+                {{ selectedFlight.departure | date : "dd.MM.yyyy HH:mm" }}
+                {{ selectedFlight.origin.name }}
+              </td>
+              <td>
+                {{ selectedFlight.arrival | date : "dd.MM.yyyy HH:mm" }}
+                {{selectedFlight.destination.name }}
+              </td>
+              <td>{{ selectedFlight.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button (click)="closeFlightDetails()">Close</button>
+      </div>
+    </div>
+  </div>
+</section>

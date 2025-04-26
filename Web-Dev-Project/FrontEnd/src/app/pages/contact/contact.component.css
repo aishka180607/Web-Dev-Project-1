@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+
+.contact {
+  padding: 60px 0;
+  background: transparent;
+  font-family: 'Just Another Hand', cursive;
+  color: #002244;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 30px;
+}
+
+form input,
+form textarea {
+  padding: 1rem;
+  font-size: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Just Another Hand', cursive;
+}
+
+form button {
+  padding: 1rem;
+  font-size: 1.8rem;
+  background-color: #f4743b;
+  border: none;
+  color: #fff;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:disabled {
+  background-color: #ffd699;
+  cursor: not-allowed;
+}
+
+form button:hover {
+  background-color: #e3632c;
+}
+
+.contact-info p {
+  font-size: 1.6rem;
+  margin: 0.5rem 0;
+}
+
+.contact-info a {
+  color: #f4743b;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+
+.social-media {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.social-media p {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.social-links {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.social-links a {
+  display: inline-block;
+  width: 40px; 
+  height: 40px; 
+}
+
+.social-links img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.social-links img:hover {
+  transform: scale(1.1);
+}

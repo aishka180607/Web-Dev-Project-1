@@ -1,0 +1,262 @@
+.applications {
+  padding: 40px 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h2 {
+  font-family: "Just Another Hand", cursive;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+h3 {
+  font-family: "Just Another Hand", cursive;
+  font-size: 2rem;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #555;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.applications-table-wrapper {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.applications-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.applications-table th,
+.applications-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.applications-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  color: #555;
+}
+
+.applications-table td {
+  font-size: 14px;
+  color: #333;
+}
+
+.applications-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.applications-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.no-applications {
+  text-align: center;
+  font-size: 16px;
+  color: #777;
+  margin-top: 20px;
+}
+
+/* Button Styles */
+.actions {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 10px; /* Add spacing between buttons */
+}
+
+button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+button.btn-pending {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+button.btn-pending:hover {
+  background-color: #e0a800;
+}
+
+button.btn-approved {
+  background-color: #28a745;
+  color: #fff;
+}
+
+button.btn-approved:hover {
+  background-color: #218838;
+}
+
+button.btn-rejected {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+button.btn-rejected:hover {
+  background-color: #c82333;
+}
+
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.custom-modal-content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  width: 600px;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-modal-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.custom-modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.custom-modal-content th,
+.custom-modal-content td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.custom-modal-content th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.custom-modal-content td {
+  font-size: 14px;
+}
+
+.custom-modal-content button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.custom-modal-content button:hover {
+  background-color: #0056b3;
+}
+
+.requests {
+  padding: 40px 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.requests-table-wrapper {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.requests-table th,
+.requests-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.requests-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  color: #555;
+}
+
+.requests-table td {
+  font-size: 14px;
+  color: #333;
+}
+
+.requests-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.requests-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.no-requests {
+  text-align: center;
+  font-size: 16px;
+  color: #777;
+  margin-top: 20px;
+}
